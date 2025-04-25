@@ -1,3 +1,11 @@
+beforeAll(() => {
+  document.body.innerHTML = `
+    <header><h1 id="header">Flatiron Book Store</h1></header>
+    <main><div id="app"></div></main>
+  `;
+});
+
+
 require ( './helpers.js' );
 
 describe("index.html", () => {
