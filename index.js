@@ -43,5 +43,49 @@ const bookStore = {
     ]
 }
 
-// Write your code here!
+// Select the header element and update it
+const bookStoreTitle = document.getElementById('header');
+bookStoreTitle.textContent = bookStore.name;
 
+// Function to display a single book
+const showSingleBook = (book) => {
+    const bookContainer = document.createElement('div');
+    bookContainer.classList.add('book-container');
+
+    const bookImage = document.createElement('img');
+    bookImage.src = book.imageUrl;
+    bookImage.alt = book.title;
+
+    const bookTitle = document.createElement('h3');
+    bookTitle.textContent = book.title;
+
+    const bookAuthor = document.createElement('p');
+    bookAuthor.textContent = `by ${book.author}`;
+
+    bookContainer.appendChild(bookImage);
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+
+    return bookContainer;
+}
+
+// Function to display all books
+const showAllBooks = (books) => {
+    const booksContainer = document.createElement('div');
+    booksContainer.classList.add('books-container');
+
+    books.forEach(book => {
+        const bookElement = showSingleBook(book);
+        booksContainer.appendChild(bookElement);
+    });
+
+    return booksContainer;
+}
+
+// Get the app element and append the bookstore content
+const appElement = document.getElementById('app');
+const bookStoreElement = showAllBooks(bookStore.books);
+appElement.appendChild(bookStoreElement);
+
+console.log("Bookstore Name: ", bookStore.name);
+console.log("Books Array: ", bookStore.books);
